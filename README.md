@@ -1,6 +1,6 @@
 # Github Trends
 
-This script gets 20 most popular repos and prints opened issues for evetyone of them.
+This script takes 20 most popular repos on github and prints opened issues for evetyone of them.
 
 # Requirements
 
