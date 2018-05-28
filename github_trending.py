@@ -2,14 +2,15 @@ import requests
 from datetime import date, timedelta
 
 
-API_REPO_URL = 'https://api.github.com/search/repositories?q=created:<{}'
+API_REPO_URL = 'https://api.github.com/search/repositories'
 API_ISSUES_URL = 'https://api.github.com/repos/{}/issues'
 
 
 def get_trending_repositories(date_week_earlier):
     repo_quantity = 20
+    request_params = {'q': 'created:<{}'.format(date_week_earlier)}
     repo_data_dict = requests.get(
-        API_REPO_URL.format(date_week_earlier)
+        API_REPO_URL, params=request_params
     ).json()
     repo_list = repo_data_dict['items']
     return sorted(
