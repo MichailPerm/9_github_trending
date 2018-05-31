@@ -3,20 +3,20 @@ from datetime import date, timedelta
 
 
 def get_trending_repositories(date_week_earlier):
-    API_REPO_URL = 'https://api.github.com/search/repositories'
+    api_repo_url = 'https://api.github.com/search/repositories'
     repo_quantity = 20
     request_params = {'q': 'created:<{}'.format(date_week_earlier), 's': 'stars'}
     repo_data_dict = requests.get(
-        API_REPO_URL, params=request_params
+        api_repo_url, params=request_params
     ).json()
     repo_list = repo_data_dict['items']
     return repo_list[:repo_quantity]
 
 
 def get_open_issues(repo):
-    API_ISSUES_URL = 'https://api.github.com/repos/{}/issues'
+    api_issues_url = 'https://api.github.com/repos/{}/issues'
     issues = requests.get(
-        API_ISSUES_URL.format(repo['full_name'])
+        api_issues_url.format(repo['full_name'])
     ).json()
     open_issues = [issue for issue in issues if issue['state'] == 'open']
     return open_issues
